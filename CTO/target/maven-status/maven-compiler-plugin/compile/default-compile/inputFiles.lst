@@ -1,5 +1,8 @@
-D:\Work\Tests\CTO\src\main\java\hello\Application.java
-D:\Work\Tests\CTO\src\main\java\hello\Greeting.java
-D:\Work\Tests\CTO\src\main\java\user\User.java
-D:\Work\Tests\CTO\src\main\java\hello\BaseRestController.java
-D:\Work\Tests\CTO\src\main\java\hello\PersonForm.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\entities\Material.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\hello\BaseRestController.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\hello\Application.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\entities\CtoUser.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\hello\LoginRestController.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\hello\CtoConfig.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\dao\UserDao.java
+D:\Work\Tests\CTO\src\main\java\nl\cto\hello\PersonForm.java

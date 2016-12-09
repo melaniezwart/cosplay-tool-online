@@ -38,8 +38,7 @@
                     <user>cto</user>
                     <password>cto</password>
                     <schemas>
-                        <schema>schema1</schema>
-                        <schema>schema2</schema>
+                        <schema>cto</schema>
                     </schemas>
                 </configuration>
                 <dependencies>
@@ -88,6 +87,11 @@
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.1.6.RELEASE</version>
         </dependency>
     </dependencies>
 </project>

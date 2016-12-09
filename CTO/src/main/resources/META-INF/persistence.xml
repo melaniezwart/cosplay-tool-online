@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1">
+    <!-- 	<persistence-unit name="bsp-home-persistence" transaction-type="JTA"> -->
+    <persistence-unit name="cto-persistence">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+        <class>nl.cto.entities.CtoUser</class>
+        <!-- converters... -->
+<!--        <class>nl.cjib.bsphome.dao.converter.LocalDateTimeConverter</class>
+        <class>nl.cjib.bsphome.dao.converter.LocalDateConverter</class>-->
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="eclipselink.target-database" value="PostgreSQL" />
+            <property name="eclipselink.logging.level" value="FINEST"/>
+            <property name="eclipselink.ddl-generation" value="NONE"/>
+            <property name="eclipselink.cache.type.default" value="NONE"/>
+            <property name="eclipselink.weaving" value="static" />
+        </properties>
+    </persistence-unit>
+
+</persistence>

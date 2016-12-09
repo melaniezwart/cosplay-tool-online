@@ -1,5 +1,8 @@
-hello\PersonForm.class
-hello\BaseRestController.class
-hello\Application.class
-hello\Greeting.class
-user\User.class
+nl\cto\entities\CtoUser.class
+nl\cto\entities\Material.class
+nl\cto\hello\CtoConfig.class
+nl\cto\hello\BaseRestController.class
+nl\cto\hello\Application.class
+nl\cto\hello\PersonForm.class
+nl\cto\dao\UserDao.class
+nl\cto\hello\LoginRestController.class

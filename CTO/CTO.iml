@@ -90,5 +90,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.json:json:20140107" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-orm:4.1.6.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.3.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.3.RELEASE" level="project" />
   </component>
 </module>
