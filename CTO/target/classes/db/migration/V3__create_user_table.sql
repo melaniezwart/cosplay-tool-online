@@ -7,6 +7,6 @@ create table CTO_USER(
 
 );
 
-create sequence cto.user_seq maxvalue 9223372036854775807 no cycle;
-create index cto_user_i1 on cto.cto_user(id);
+create sequence user_seq maxvalue 9223372036854775807 no cycle;
+create index cto_user_i1 on cto_user(id);
 

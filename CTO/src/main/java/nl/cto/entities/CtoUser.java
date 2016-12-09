@@ -1,7 +1,9 @@
 package nl.cto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by mzwart on 8-12-2016.
@@ -9,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name= "CTO_USER")
 @NamedQueries({
-	@NamedQuery(name = "CtoUser.getByUsername", query = "SELECT u FROM CTO_USER WHERE u.username = :username")
+	@NamedQuery(name = "CtoUser.getByUsername", query = "SELECT u FROM CtoUser u WHERE u.username = :username")
 })
 public class CtoUser {
 
@@ -29,7 +31,16 @@ public class CtoUser {
 	private String email;
 
 	@Column(name = "datejoined")
-	private LocalDateTime datejoined;
+	private Date datejoined;
+
+	public CtoUser(String username, String password){
+		this.username = username;
+		this.password = password;
+	}
+
+	public CtoUser(){
+
+	}
 
 	public long getId() {
 		return id;
@@ -47,6 +58,7 @@ public class CtoUser {
 		this.username = username;
 	}
 
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
@@ -63,11 +75,11 @@ public class CtoUser {
 		this.email = email;
 	}
 
-	public LocalDateTime getDatejoined() {
+	public Date getDatejoined() {
 		return datejoined;
 	}
 
-	public void setDatejoined(LocalDateTime datejoined) {
+	public void setDatejoined(Date datejoined) {
 		this.datejoined = datejoined;
 	}
 }
