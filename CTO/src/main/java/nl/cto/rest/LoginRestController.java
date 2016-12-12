@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import static nl.cto.login.EncryptionUtil.md5;
+
 /**
  * Created by mzwart on 8-12-2016.
  */
@@ -45,9 +47,16 @@ public class LoginRestController {
 		}
 	}
 
-	@RequestMapping(value = "ex/foos", method = RequestMethod.GET)
-	@ResponseBody
-	public String getFoosBySimplePath(){
-		return "Get some Foos";
+	@RequestMapping(value = "adduser", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<?> adduser(@RequestBody LoginValues login){
+		if(ctoUserService.getCtoUserByUsername(login.getUsername()) != null){
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+			//TODO show the user the username already exists.
+		} else if(login == null){
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} else {
+			CtoUser ctoUser = ctoUserService.registerUser(login.getUsername(), md5(login.getPassword()));
+			return new ResponseEntity<>(ctoUser, HttpStatus.OK);
+		}
 	}
 }

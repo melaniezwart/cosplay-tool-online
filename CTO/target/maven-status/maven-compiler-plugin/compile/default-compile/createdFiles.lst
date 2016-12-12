@@ -1,4 +1,5 @@
 nl\cto\entities\CtoUser.class
+nl\cto\converter\LocalDateTimeConverter.class
 nl\cto\entities\Material.class
 nl\cto\service\LoginService.class
 nl\cto\entities\LoginValues.class

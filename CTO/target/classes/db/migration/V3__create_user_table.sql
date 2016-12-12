@@ -4,7 +4,6 @@ create table CTO_USER(
     PASSWORD varchar(100) not null,
     EMAIL varchar(255),
     DATEJOINED timestamp DEFAULT current_timestamp not null
-
 );
 
 create sequence user_seq maxvalue 9223372036854775807 no cycle;

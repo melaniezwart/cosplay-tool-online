@@ -3,6 +3,7 @@
     <persistence-unit name="default">
         <class>nl.cto.entities.CtoUser</class>
         <class>nl.cto.entities.Material</class>
+        <!-- Converter classes -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
 

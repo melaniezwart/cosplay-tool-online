@@ -3,7 +3,9 @@ package nl.cto.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Date;
+import org.joda.time.LocalDateTime;
+
+import java.sql.Timestamp;
 
 /**
  * Created by mzwart on 8-12-2016.
@@ -30,8 +32,8 @@ public class CtoUser {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "datejoined")
-	private Date datejoined;
+	@Column(name = "datejoined", columnDefinition = "DATE")
+	private Timestamp datejoined;
 
 	public CtoUser(String username, String password){
 		this.username = username;
@@ -75,11 +77,11 @@ public class CtoUser {
 		this.email = email;
 	}
 
-	public Date getDatejoined() {
+	public Timestamp getDatejoined() {
 		return datejoined;
 	}
 
-	public void setDatejoined(Date datejoined) {
+	public void setDatejoined(Timestamp datejoined) {
 		this.datejoined = datejoined;
 	}
 }
