@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Created by mzwart on 9-12-2016.
  */
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = {"nl.cto.repository"})
 @ComponentScan({"nl.cto"})
 public class CtoConfig {
 }

@@ -3,7 +3,6 @@ package nl.cto.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import org.joda.time.LocalDateTime;
 
 import java.sql.Timestamp;
 

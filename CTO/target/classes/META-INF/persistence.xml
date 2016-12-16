@@ -3,6 +3,11 @@
     <persistence-unit name="default">
         <class>nl.cto.entities.CtoUser</class>
         <class>nl.cto.entities.Material</class>
+
+        <class>nl.cto.entities.Location</class>
+        <class>nl.cto.entities.AltNames</class>
+        <class>nl.cto.entities.Price</class>
+
         <!-- Converter classes -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
     </persistence-unit>
