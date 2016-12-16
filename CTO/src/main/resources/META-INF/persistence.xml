@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.1">
+    <persistence-unit name="default">
+        <class>nl.cto.entities.CtoUser</class>
+        <class>nl.cto.entities.Material</class>
+        <class>nl.cto.entities.Location</class>
+        <class>nl.cto.entities.AltNames</class>
+        <class>nl.cto.entities.Price</class>
+        <!-- Converter classes -->
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    </persistence-unit>
+
+</persistence>
