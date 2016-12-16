@@ -23,7 +23,7 @@ public class MaterialRestController {
 	@Autowired
 	private MaterialService materialService;
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginRestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MaterialRestController.class);
 
 	@RequestMapping(value = "get/{name}", method = RequestMethod.GET)
 	public ResponseEntity<?> getMaterial(@PathVariable("name") String name){
