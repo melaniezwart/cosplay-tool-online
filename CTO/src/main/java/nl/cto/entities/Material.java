@@ -21,7 +21,6 @@ public class Material {
 	@Column(name = "name")
 	private String name;
 
-
 	@OneToMany(mappedBy = "mat_id", cascade = CascadeType.PERSIST)
 	private List<AltNames> mat_alt_names;
 

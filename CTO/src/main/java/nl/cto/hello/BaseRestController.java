@@ -1,6 +1,5 @@
-package nl.cto.rest;
+package nl.cto.hello;
 
-import nl.cto.hello.PersonForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,4 +27,9 @@ public class BaseRestController{
 		return "redirect:/results";
 	}
 
+	@RequestMapping(value = "ex/foos", method = RequestMethod.GET)
+	@ResponseBody
+	public String getFoosBySimplePath(){
+		return "Get some Foos";
+	}
 }

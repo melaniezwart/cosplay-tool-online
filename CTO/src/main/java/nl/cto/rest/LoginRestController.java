@@ -1,8 +1,10 @@
 package nl.cto.rest;
 
 import nl.cto.entities.CtoUser;
+
 import nl.cto.login.LoginValues;
 import nl.cto.service.CtoUserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,7 @@ public class LoginRestController {
 			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 		} else {
 			CtoUser ctoUser = ctoUserService.getCtoUserByLogin(login);
+
 			if(ctoUser == null) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 			else return new ResponseEntity<>(ctoUser, HttpStatus.OK);
 		}

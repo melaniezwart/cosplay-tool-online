@@ -1,4 +1,5 @@
 nl\cto\entities\CtoUser.class
+
 nl\cto\entities\Material.class
 nl\cto\entities\AltNames.class
 nl\cto\service\CtoUserService.class
@@ -18,4 +19,5 @@ nl\cto\rest\BaseRestController.class
 util\converter\LocalDateTimeConverter.class
 nl\cto\repository\CtoUserRepository.class
 nl\cto\rest\MaterialRestController.class
+
 nl\cto\rest\LoginRestController.class
