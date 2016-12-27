@@ -27,5 +27,4 @@ public class BaseRestController{
 
 		return "redirect:/results";
 	}
-
 }

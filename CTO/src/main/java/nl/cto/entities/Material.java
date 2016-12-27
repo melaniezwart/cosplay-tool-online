@@ -1,6 +1,9 @@
 package nl.cto.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,13 +24,15 @@ public class Material {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "mat_id", cascade = CascadeType.PERSIST)
-	private List<AltNames> mat_alt_names;
+	@JsonBackReference
+	@JoinTable(name = "cto_mat_to_mat", joinColumns = {
+		@JoinColumn(name = "mat_id1", referencedColumnName = "id")}, inverseJoinColumns = {
+		@JoinColumn(name = "mat_id2", referencedColumnName = "id")})
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	private List<Material> alt_materials;
 
-	@OneToMany(mappedBy = "mat_id", cascade = CascadeType.PERSIST)
-	private List<Price> mat_price;
-
-	@OneToMany(mappedBy = "mat_id", cascade = CascadeType.PERSIST)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy = "mat_id", cascade = CascadeType.ALL)
 	private List<Location> mat_location;
 
 	@Column(name = "avg_price")
@@ -41,28 +46,20 @@ public class Material {
 		this.id = id;
 	}
 
-	public List<AltNames> getMat_alt_names() {
-		return mat_alt_names;
-	}
-
-	public void setMat_alt_names(List<AltNames> mat_alt_names) {
-		this.mat_alt_names = mat_alt_names;
-	}
-
-	public List<Price> getMat_price() {
-		return mat_price;
-	}
-
-	public void setMat_price(List<Price> mat_price) {
-		this.mat_price = mat_price;
-	}
-
 	public List<Location> getMat_location() {
 		return mat_location;
 	}
 
 	public void setMat_location(List<Location> mat_location) {
 		this.mat_location = mat_location;
+	}
+
+	public List<Material> getAlt_materials() {
+		return alt_materials;
+	}
+
+	public void setAlt_materials(List<Material> alt_materials) {
+		this.alt_materials = alt_materials;
 	}
 
 	public String getName() {

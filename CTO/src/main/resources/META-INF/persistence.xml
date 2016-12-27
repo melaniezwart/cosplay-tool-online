@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<persistence version="2.1">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
     <persistence-unit name="default">
+
         <class>nl.cto.entities.CtoUser</class>
         <class>nl.cto.entities.Material</class>
-
         <class>nl.cto.entities.Location</class>
-        <class>nl.cto.entities.AltNames</class>
-        <class>nl.cto.entities.Price</class>
-
+        <class>nl.cto.entities.Login</class>
         <!-- Converter classes -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+            <property name="hibernate.connection.username" value="cto" />
+            <property name="hibernate.connection.password" value="cto" />
+            <property name="hibernate.connection.URL"  value="false"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/CTO"/>
+        </properties>
+
     </persistence-unit>
 
 </persistence>

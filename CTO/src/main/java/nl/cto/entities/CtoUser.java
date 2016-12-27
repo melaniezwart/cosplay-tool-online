@@ -11,9 +11,9 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name= "CTO_USER")
-@NamedQueries({
-	@NamedQuery(name = "CtoUser.getByUsername", query = "SELECT u FROM CtoUser u WHERE u.username = :username")
-})
+//@NamedQueries({
+//	@NamedQuery(name = "CtoUser.getByUsername", query = "SELECT u FROM CtoUser u WHERE u.username = :username")
+//})
 public class CtoUser {
 
 	@Id
@@ -22,26 +22,14 @@ public class CtoUser {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "username")
-	private String username;
-
-	@Column(name = "password")
-	private String password;
+	@Column(name = "cto_username")
+	private String ctoUsername;
 
 	@Column(name = "email")
 	private String email;
 
 	@Column(name = "datejoined", columnDefinition = "DATE")
 	private Timestamp datejoined;
-
-	public CtoUser(String username, String password){
-		this.username = username;
-		this.password = password;
-	}
-
-	public CtoUser(){
-
-	}
 
 	public long getId() {
 		return id;
@@ -51,21 +39,12 @@ public class CtoUser {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getCtoUsername() {
+		return ctoUsername;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@JsonIgnore
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCtoUsername(String ctoUsername) {
+		this.ctoUsername = ctoUsername;
 	}
 
 	public String getEmail() {
