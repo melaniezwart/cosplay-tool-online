@@ -1,0 +1,26 @@
+
+<!DOCTYPE html >
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product</title>
+</head>
+<body>
+    <table border="1" >
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Username</td>
+                <td>Password</td>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ctoUser : ${users}">
+            <td th:text="${ctoUser.id}">1</td>
+            <td th:text="${ctoUser.username}">user</td>
+            <td th:text="${ctoUser.password}">pass</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
