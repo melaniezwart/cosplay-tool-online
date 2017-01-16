@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form action="#" th:action="@{/material/newmaterial}" th:object="${material}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+           <!-- <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>-->
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{price}" /></td>
+<!--            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>-->
+        </tr>
+        <tr>
+            <td>Location</td>
+            <td><input type="text" th:field="*{location}" /></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
+<!--
+
+//Hier zit een fout bij het laden van de pagina.-->

@@ -1,0 +1,49 @@
+<!--<html xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<c:url value="/login" var="loginUrl" />
+<form action="${loginUrl}" method="post">       1
+    <c:if test="${param.error != null}">        2
+        <p>
+            Invalid username and password.
+        </p>
+    </c:if>
+    <c:if test="${param.logout != null}">       3
+        <p>
+            You have been logged out.
+        </p>
+    </c:if>
+    <p>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"/>	4
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>	5
+    </p>
+    <input type="hidden"                        6
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+    <button type="submit" class="btn">Log in</button>
+</form>
+</html>-->
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form action="#" th:action="@{/login}" th:object="${ctoUser}" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{username}" /></td>
+            <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}" /></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Material connections</title>
+</head>
+<body>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Location</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="material : ${materials}">
+        <td th:text="${material.name}">user</td>
+        <td th:text="${material.price}">user</td>
+        <td th:text="${material.location}">user</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

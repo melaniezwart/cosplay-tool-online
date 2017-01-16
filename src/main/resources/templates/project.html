@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Result</h1>
+<p th:text="'ID: ' + ${project.id}" />
+<p th:text="'Name: ' + ${project.name}" />
+<p th:text="'Date started: ' + ${project.dateStarted}" />
+<p th:text="'Finished: ' + ${project.finished}" />
+<p th:text="'Username: ' + ${ctoUser.username}" />
+<p th:text="'Money spent: ' + ${project.totalMoneySpent}" />
+<p>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Location</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="material : ${materials}">
+        <td th:text="${material.name}">user</td>
+        <td th:text="${material.price}">user</td>
+        <td th:text="${material.location}">user</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+<p>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Date</td>
+        <td>Message</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.datePosted}">user</td>
+        <td th:text="${message.message}">user</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+<p>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Message</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo : ${todos}">
+        <td th:text="${todo.message}">user</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+<a href="/">Submit another message</a>
+</body>
+</html>
