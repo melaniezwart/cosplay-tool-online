@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form action="#" th:action="@{/test}" th:object="${projectTodo}" method="post">
+    <table>
+        <tr>
+            <td>Project ID:</td>
+            <td><input type="text" th:field="*{projectId}" /></td>
+        </tr>
+        <tr>
+            <td>Message:</td>
+            <td><input type="text" th:field="*{message}" /></td>
+        </tr>
+        <tr>
+            <td>Estimated cost</td>
+            <td><input type="text" th:field="*{estimatedCost}" /></td>
+        </tr>
+        <tr>
+            <td>Estimated time</td>
+            <td><input type="text" th:field="*{estimatedTime}" /></td>
+        </tr>
+    </table>
+    <table>
+        <tr th:each="projectTodo : *{ProjectTodos}">
+            <td th:text="${projectTodo.}"></td>
+
+            <td>
+                <ul>
+                    <li th:each="materialCon : ${allMaterials}">
+                        <input type="checkbox" th:field="*{matConnections}" th:value="${materialCon.id}" />
+                        <label th:for="${#ids.prev('matConnections')}" th:text="${materialCon.name}">Label</label>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

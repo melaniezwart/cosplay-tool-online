@@ -9,6 +9,20 @@
 <p th:text="'name: ' + ${material.name}" />
 <p th:text="'price: ' + ${material.price}" />
 <p th:text="'location: ' + ${material.location}" />
-<a href="/">Submit another message</a>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Similar to:</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="matCon : ${material.matConnections}">
+        <td>
+        <a href="material.html" th:href="@{'/material/' + ${matCon.name}}" >
+        <p th:text="${matCon.name}">
+            </p></a></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

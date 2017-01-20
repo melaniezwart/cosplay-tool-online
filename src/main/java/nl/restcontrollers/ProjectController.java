@@ -50,19 +50,43 @@ public class ProjectController {
 	}
 
 	@PostMapping("/project/new")
-	public String createNewProject(@RequestBody WebProject webProject){
-	//	String userid = httpResponse.getFirstHeader("userid").getValue();
-	//	Project project = projectService.createNewProject(webProject, userid);
-
-	//	return "redirect:/project/" + project.getId();
-		return null;
-		//TODO doesn't work yet
+	public String createNewProject(WebProject webProject){
+		if(session.isNew() || session.getAttribute("x-userid") == null) return "redirect:/login";
+		String userid = session.getAttribute("x-userid").toString();
+		Project project = projectService.createNewProject(webProject, userid);
+		return "redirect:/project/" + project.getId();
+		//TODO not tested
 	}
 
 	@GetMapping("/project/new")
 	public String createNewProjectPage(WebProject webProject){
+		if(session.isNew() || session.getAttribute("x-userid") == null) return "redirect:/login";
+		else return "newproject";
+	}
 
-		return "newproject";
+	@GetMapping("/project/all/{userid}")
+	public ModelAndView getAllProjectsByUserid(@PathVariable("userid") String userid){
+		ModelAndView mv = new ModelAndView("projects");
+		List<Project> projects = projectService.getProjectsByUser(userid);
+		if(projects.isEmpty() || projects == null){
+			return mv;
+		}
+		mv.addObject("projects", projects);
+		return mv;
+		//get all projects by userid
+		//transform some data
+		//add to mv
+	}
+
+	@GetMapping("/project/current/{userid}")
+	public ModelAndView getCurrentProjectsByUserid(@PathVariable("userid") String userid){
+		ModelAndView mv = new ModelAndView("projects");
+		List<Project> projects = projectService.getCurrentProjectsByUser(userid);
+		if(projects.isEmpty() || projects == null){
+			return mv;
+		}
+		mv.addObject("projects", projects);
+		return mv;
 	}
 
 	/**
@@ -81,7 +105,7 @@ public class ProjectController {
 			totalTime += p.getEstimatedTime();
 			totalCost += p.getEstimatedCost();
 		}
-		project.setEstimatedTimeInHours(totalTime);
+		project.setEstimatedTime(totalTime);
 		project.setEstimatedCost(totalCost);
 	}
 

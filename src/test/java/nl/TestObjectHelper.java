@@ -45,12 +45,12 @@ public class TestObjectHelper {
 		return project;
 	}
 
-	public static MatConnections getMatConnections(){
-		MatConnections connection = new MatConnections();
-		connection.setMatId1(RandomUtils.nextLong());
-		connection.setMatId2(RandomUtils.nextLong());
+/*	public static MaterialMatConnections getMatConnections(){
+		MaterialMatConnections connection = new MaterialMatConnections();
+		connection.setMaterialId(RandomUtils.nextLong());
+		connection.setMatConnectionsId(RandomUtils.nextLong());
 		return connection;
-	}
+	}*/
 
 	public static UserConnections getUserConnections(){
 		UserConnections connection = new UserConnections();

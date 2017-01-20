@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>View all projects</title>
+</head>
+<body>
+<table border="1" >
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Date started</td>
+        <td>Finished</td>
+        <td>Money spent</td>
+        <td>Time spent</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.name}">user</td>
+        <td th:text="${project.dateStarted}">user</td>
+        <td th:text="${project.finished}">user</td>
+        <td th:text="${project.totalMoneySpent}">user</td>
+        <td th:text="${project.daysPassed}">user</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

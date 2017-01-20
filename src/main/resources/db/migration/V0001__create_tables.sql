@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS cto_user(
     username varchar(50) not null,
     password varchar(50) not null,
     role varchar(10) not null,
+    private_profile boolean,
     email varchar(100)
 );
 
@@ -22,14 +23,15 @@ CREATE TABLE IF NOT EXISTS material(
 CREATE TABLE IF NOT EXISTS project(
     id bigint primary key default (nextval('project_id')),
     name varchar(200),
-    date_started date not null,
-    date_finished date,
+    date_started varchar(50) not null,
+    date_finished varchar(50),
     finished boolean,
     days_passed int,
     cto_user bigint not null,
     total_money_spent int,
     estimated_cost int,
-    estimated_time int
+    estimated_time int,
+    private_profile boolean
 );
 
 --Indexes on tables for quicker searching

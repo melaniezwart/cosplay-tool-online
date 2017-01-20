@@ -24,7 +24,25 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler({MaterialNotFoundException.class})
 	public ResponseEntity<ErrorResponse> handleMaterialNotFoundException (MaterialNotFoundException e){
 		this.logError(e);
-		return this.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, "Material was not found. Did you make a type?");
+		return this.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, "Material was not found. Did you make a typo?");
+	}
+
+	@ExceptionHandler({UserAlreadyExistsException.class})
+	public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException (UserAlreadyExistsException e){
+		this.logError(e);
+		return this.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, "This user already exists, try a different name");
+	}
+
+	@ExceptionHandler({UserNotAuthorizedException.class})
+	public ResponseEntity<ErrorResponse> handleUserNotAuthorizedException (UserNotAuthorizedException e){
+		this.logError(e);
+		return this.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, "You are not authorized for this page");
+	}
+
+	@ExceptionHandler({FunctionalException.class})
+	public ResponseEntity<ErrorResponse> handleFunctionalException (FunctionalException e){
+		this.logError(e);
+		return this.createResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 	}
 
 	@ExceptionHandler({Exception.class})

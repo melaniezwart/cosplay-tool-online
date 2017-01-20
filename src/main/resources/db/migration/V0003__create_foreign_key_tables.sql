@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS project_messages (
     id bigint primary key default (nextval('project_messages_seq')),
     project_id bigint not null,
     date_posted date not null,
+    private_message boolean default false,
     message varchar(5000) not null
 );
 

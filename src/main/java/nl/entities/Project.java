@@ -1,10 +1,8 @@
 package nl.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by mzwart on 10-1-2017.
@@ -25,8 +23,15 @@ public class Project implements Serializable{
 	private int daysPassed;
 	private long ctoUser;
 	private int totalMoneySpent;
+	private boolean privateProfile = false;
 
-	private int estimatedTimeInHours;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProjectMessages> projectMessages;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProjectTodo> projectTodo;
+
+	private int estimatedTime;
 	private int estimatedCost;
 
 
@@ -94,12 +99,12 @@ public class Project implements Serializable{
 		this.totalMoneySpent = totalMoneySpent;
 	}
 
-	public int getEstimatedTimeInHours() {
-		return estimatedTimeInHours;
+	public boolean isPrivateProfile() {
+		return privateProfile;
 	}
 
-	public void setEstimatedTimeInHours(int estimatedTimeInHours) {
-		this.estimatedTimeInHours = estimatedTimeInHours;
+	public void setPrivateProfile(boolean privateProfile) {
+		this.privateProfile = privateProfile;
 	}
 
 	public int getEstimatedCost() {
@@ -108,5 +113,29 @@ public class Project implements Serializable{
 
 	public void setEstimatedCost(int estimatedCost) {
 		this.estimatedCost = estimatedCost;
+	}
+
+	public List<ProjectMessages> getProjectMessages() {
+		return projectMessages;
+	}
+
+	public void setProjectMessages(List<ProjectMessages> projectMessages) {
+		this.projectMessages = projectMessages;
+	}
+
+	public List<ProjectTodo> getProjectTodo() {
+		return projectTodo;
+	}
+
+	public void setProjectTodo(List<ProjectTodo> projectTodo) {
+		this.projectTodo = projectTodo;
+	}
+
+	public int getEstimatedTime() {
+		return estimatedTime;
+	}
+
+	public void setEstimatedTime(int estimatedTime) {
+		this.estimatedTime = estimatedTime;
 	}
 }

@@ -4,7 +4,10 @@ import nl.entities.*;
 import nl.mappers.WebProjectToProject;
 import nl.repository.ProjectRepository;
 import nl.repository.ProjectTodoRepository;
+import nl.restcontrollers.ProjectController;
 import nl.web.WebProject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.util.List;
  */
 @Service
 public class ProjectService {
+
+	private Logger LOG = LoggerFactory.getLogger(ProjectService.class);
 
 	@Autowired
 	private ProjectRepository projectRepository;
@@ -64,13 +69,25 @@ public class ProjectService {
 	}
 
 	public Project createNewProject(WebProject webProject, String id){
+		LOG.debug("New project being created with the name {}", webProject.getName());
 		WebProjectToProject mapper = new WebProjectToProject();
 		Project project = mapper.webProjectToProject(webProject, id);
 		Project savedEntity = projectRepository.saveAndFlush(project);
-		List<ProjectTodo> todos = mapper.webTodoToProjectTodo(webProject, id);
-			for(ProjectTodo p : todos){
+		/*List<ProjectTodo> todos = mapper.webTodoToProjectTodo(webProject, id);
+		if(!todos.isEmpty()) {
+			for (ProjectTodo p : todos) {
 				projectTodoRepository.saveAndFlush(p);
 			}
+		}*/
+		LOG.debug("Project saved with the name {}", project.getName());
 		return savedEntity;
+	}
+
+	public List<Project> getProjectsByUser(String userid){
+		return projectRepository.getByCtoUser(Long.valueOf(userid));
+	}
+
+	public List<Project> getCurrentProjectsByUser(String userid){
+		return projectRepository.getActiveByCtoUser(Long.valueOf(userid));
 	}
 }

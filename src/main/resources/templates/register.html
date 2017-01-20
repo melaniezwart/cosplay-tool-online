@@ -13,6 +13,10 @@
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
         </tr>
         <tr>
+            <td>Private profile?</td>
+            <td><input type="checkbox" th:field="*{privateProfile}" /></td>
+        </tr>
+        <tr>
             <td><button type="submit">Submit</button></td>
         </tr>
     </table>

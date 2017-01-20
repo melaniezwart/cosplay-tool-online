@@ -1,6 +1,7 @@
 package nl.restcontrollers;
 
 import nl.entities.CtoUser;
+import nl.exceptions.FunctionalException;
 import nl.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,15 @@ public class UserController extends WebMvcConfigurerAdapter{
 	@Autowired
 	private UserService userService;
 
+	@GetMapping("/")
+	public String homepage() {
+		if(session.getAttribute("x-userrole") != null){
+			if(session.getAttribute("x-userrole").equals("ADMIN")) return "adminhome";
+			else if(session.getAttribute("x-userrole").equals("USER")) return "useroptions";
+			else throw new FunctionalException("Userrole exists but is empty or wrong: " + session.getAttribute("x-userrole").toString());
+		} else return "redirect:/login";
+	}
+
 	/**
 	 * Login rest calls
      */
@@ -43,12 +53,13 @@ public class UserController extends WebMvcConfigurerAdapter{
 
 	@PostMapping("/login")
 	public String login(@Valid CtoUser ctoUser, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) return "login";
+		if (bindingResult.hasErrors()) return "redirect:/login";
 		//MD5 hashes the password
 		ctoUser.setPassword(md5(ctoUser.getPassword()));
 		CtoUser user = userService.login(ctoUser);
-		if (user == null) return "login";
+		if (user == null) return "redirect:/login";
 		else {
+
 			return "redirect:/useroptions";
 		}
 	}
@@ -58,6 +69,7 @@ public class UserController extends WebMvcConfigurerAdapter{
 	 */
 	@GetMapping("/useroptions")
 	public String showUserOptions(){
+		//TODO
 		if(session.getAttribute("x-userrole").equals("ADMIN")) return "adminpage";
 		else return "useroptions";
 	}
@@ -93,7 +105,7 @@ public class UserController extends WebMvcConfigurerAdapter{
      */
 	@GetMapping("/users")
 	public ModelAndView viewAllUsers(){
-		if(!session.getAttribute("x-loggedin").equals("true")) return new ModelAndView("login");
+		if(session.isNew() || session.getAttribute("x-userid") == null) return new ModelAndView("redirect:/login");
 		ModelAndView mv = new ModelAndView("users");
 		List<CtoUser> users = userService.findAll();
 		mv.addObject("users", users);
@@ -105,6 +117,7 @@ public class UserController extends WebMvcConfigurerAdapter{
 	 */
 	@GetMapping("/friends")
 	public ModelAndView viewYourFriends(){
+		if(session.isNew() || session.getAttribute("x-userid") == null) return new ModelAndView("redirect:/login");
 		String id = session.getAttribute("x-userid").toString();
 		ModelAndView mv = new ModelAndView("friends");
 		List<CtoUser> users = userService.findFriendsById(Long.parseLong(id));
@@ -128,5 +141,20 @@ public class UserController extends WebMvcConfigurerAdapter{
 		//Send out email to same user with temp password
 		//OR send out email to user with link to change password. If so, new rest call needed
 		return "redirect:/home";
+	}
+
+	/**
+	 * Rest call to log the user out and invalidate the session
+	 */
+	@GetMapping("/logout")
+	public String logout(){
+		session.invalidate();
+		return "redirect:/login";
+	}
+
+	@GetMapping("/getsession")
+	public String getSession(){
+		userService.showSessionAttributes();
+		return "redirect:/login";
 	}
 }

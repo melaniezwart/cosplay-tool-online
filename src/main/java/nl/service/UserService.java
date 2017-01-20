@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public void registerUser(CtoUser ctoUser){
-		if(userRepository.findOneByUsername(ctoUser.getUsername()) == null) throw new UserAlreadyExistsException("User with the name " + ctoUser.getUsername() + "already exists");
+		if(userRepository.findOneByUsername(ctoUser.getUsername()) != null) throw new UserAlreadyExistsException("User with the name " + ctoUser.getUsername() + "already exists");
 		else {
 			ctoUser.setRole("USER");
 			userRepository.saveAndFlush(ctoUser);
@@ -41,10 +42,10 @@ public class UserService {
 		if(user == null) throw new UserNotFoundException("User with name " + ctoUser.getUsername() + " not found.");
 		//Login successful
 		LOG.info("User " + user.getUsername() + " successfully logged in.");
-		session.setAttribute("x-loggedin", true);
 		session.setAttribute("x-userid", user.getId());
 		session.setAttribute("x-username", user.getUsername());
 		session.setAttribute("x-userrole", user.getRole());
+		showSessionAttributes();
 		return user;
 	}
 
@@ -67,5 +68,16 @@ public class UserService {
 			ctoUsers.add(userRepository.findOne(u.getUserConnection()));
 		}
 		return ctoUsers;
+	}
+
+	public void showSessionAttributes(){
+		Enumeration<String> list = session.getAttributeNames();
+		while(list.hasMoreElements()){
+			String element = list.nextElement().toString();
+			System.out.println(element + ": " + session.getAttribute(element).toString());
+		}
+		System.out.println("Max interval time: " + session.getMaxInactiveInterval());
+		System.out.println("Time last accessed: " + session.getLastAccessedTime());
+		System.out.println("Time created: " + session.getCreationTime());
 	}
 }

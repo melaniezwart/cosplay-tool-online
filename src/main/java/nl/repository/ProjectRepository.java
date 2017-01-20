@@ -28,4 +28,9 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	@Query("SELECT x FROM ProjectTodo x WHERE x.id = ?1")
 	ProjectTodo getOneTodo(long id);
 
+	List<Project> getByCtoUser(long ctoUser);
+
+	@Query("SELECT x FROM Project x WHERE x.ctoUser = ?1 AND x.finished = 'false'")
+	List<Project> getActiveByCtoUser(long ctoUser);
+
 }

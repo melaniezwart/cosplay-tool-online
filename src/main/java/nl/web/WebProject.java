@@ -1,5 +1,7 @@
 package nl.web;
 
+import nl.entities.ProjectTodo;
+
 import java.util.List;
 
 /**
@@ -8,11 +10,11 @@ import java.util.List;
 public class WebProject {
 
 	private String name;
-	private List<WebTodo> webTodos;
+	private boolean privateProfile = false;
+	private List<ProjectTodo> projectTodos;
 	//TODO multiple forms on one page. One form for project name and other possible info
 	//TODO Second form for todo messages, each with their estimated cost and time
 	//TODO Add a button to add another todo
-
 
 	public String getName() {
 		return name;
@@ -22,11 +24,19 @@ public class WebProject {
 		this.name = name;
 	}
 
-	public List<WebTodo> getWebTodos() {
-		return webTodos;
+	public boolean isPrivateProfile() {
+		return privateProfile;
 	}
 
-	public void setWebTodos(List<WebTodo> webTodos) {
-		this.webTodos = webTodos;
+	public void setPrivateProfile(boolean privateProfile) {
+		this.privateProfile = privateProfile;
+	}
+
+	public List<ProjectTodo> getWebTodos() {
+		return projectTodos;
+	}
+
+	public void setWebTodos(List<ProjectTodo> projectTodos) {
+		this.projectTodos = projectTodos;
 	}
 }

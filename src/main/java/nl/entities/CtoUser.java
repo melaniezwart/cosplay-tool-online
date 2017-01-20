@@ -1,6 +1,5 @@
 package nl.entities;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,17 +17,11 @@ public class CtoUser{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
-	@Size(min=2, max=30)
 	private String username;
-
-	@NotNull
-	@Size(min=2, max=30)
 	private String password;
-
 	private String role;
-
 	private String email;
+	private boolean privateProfile = false;
 
 	public long getId() {
 		return id;
@@ -72,6 +65,14 @@ public class CtoUser{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isPrivateProfile() {
+		return privateProfile;
+	}
+
+	public void setPrivateProfile(boolean privateProfile) {
+		this.privateProfile = privateProfile;
 	}
 
 	/*	public CtoUser(String username, String password, List<? extends GrantedAuthority> auths){

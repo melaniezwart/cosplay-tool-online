@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class WebProjectToProject {
 
-	//TODO get user from header
 	//TODO make possible to add an earlier date
 	public Project webProjectToProject(WebProject webProject, String id){
 		Project project = new Project();
@@ -22,19 +21,8 @@ public class WebProjectToProject {
 		project.setDateStarted(LocalDate.now().toString());
 		project.setCtoUser(Long.valueOf(id));
 		project.setFinished(false);
+		project.setPrivateProfile(webProject.isPrivateProfile());
+		project.setProjectTodo(webProject.getWebTodos());
 		return project;
-	}
-
-	public List<ProjectTodo> webTodoToProjectTodo(WebProject webProject, String id){
-		List<WebTodo> todos = webProject.getWebTodos();
-		List<ProjectTodo> projectTodos = new ArrayList<>();
-		for(WebTodo w : todos) {
-			ProjectTodo todo = new ProjectTodo();
-			todo.setEstimatedCost(w.getEstimatedCost());
-			todo.setEstimatedTime(w.getEstimatedTime());
-			todo.setMessage(w.getMessage());
-			todo.setProjectId(Long.valueOf(id));
-		}
-		return projectTodos;
 	}
 }

@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<form action="#" th:action="@{/material/newmaterial}" th:object="${material}" method="post">
+<form action="#" th:action="@{/material/newmaterial}" th:object="${webMaterial}" method="post">
     <table>
         <tr>
             <td>Name:</td>
@@ -19,10 +19,17 @@
         <tr>
             <td><button type="submit">Submit</button></td>
         </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li th:each="materialCon : ${allMaterials}">
+                        <input type="checkbox" th:field="*{matConnections}" th:value="${materialCon.id}" />
+                        <label th:for="${#ids.prev('matConnections')}" th:text="${materialCon.name}">Label</label>
+                    </li>
+                </ul>
+            </td>
+        </tr>
     </table>
 </form>
 </body>
 </html>
-<!--
-
-//Hier zit een fout bij het laden van de pagina.-->

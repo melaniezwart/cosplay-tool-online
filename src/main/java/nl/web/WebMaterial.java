@@ -1,31 +1,22 @@
-package nl.entities;
+package nl.web;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import nl.entities.Material;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mzwart on 9-1-2017.
+ * Created by mzwart on 20-1-2017.
  */
-@Entity
-public class Material {
+public class WebMaterial {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
-	@Size(min=1, max=50)
 	private String name;
-
 	private int price;
-
-	@Size(max=200)
 	private String location;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Material> matConnections;
+	private List<Long> matConnections = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -59,11 +50,11 @@ public class Material {
 		this.location = location;
 	}
 
-	public List<Material> getMatConnections() {
+	public List<Long> getMatConnections() {
 		return matConnections;
 	}
 
-	public void setMatConnections(List<Material> matConnections) {
+	public void setMatConnections(List<Long> matConnections) {
 		this.matConnections = matConnections;
 	}
 }

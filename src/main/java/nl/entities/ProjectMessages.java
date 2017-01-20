@@ -15,6 +15,7 @@ public class ProjectMessages implements Serializable{
 	private long projectId;
 	private String datePosted;
 	private String message;
+	private boolean privateMessage = false;
 
 	public long getId() {
 		return id;
@@ -46,5 +47,13 @@ public class ProjectMessages implements Serializable{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public boolean isPrivateMessage() {
+		return privateMessage;
+	}
+
+	public void setPrivateMessage(boolean privateMessage) {
+		this.privateMessage = privateMessage;
 	}
 }
